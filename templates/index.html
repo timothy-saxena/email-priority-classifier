@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Email Priority Classifier</title>
+    <style>
+        body {
+            background: #0f172a;
+            color: #e5e7eb;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #020617;
+            padding: 30px;
+            border-radius: 12px;
+            width: 420px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #38bdf8;
+        }
+
+        label {
+            font-size: 14px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            margin-top: 6px;
+            margin-bottom: 15px;
+            padding: 8px;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+        }
+
+        textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #38bdf8;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .high {
+            color: #ef4444;
+        }
+
+        .medium {
+            color: #facc15;
+        }
+
+        .low {
+            color: #22c55e;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Email Priority Classifier</h2>
+
+        <form method="POST">
+            <label>Subject</label>
+            <input type="text" name="subject" required>
+
+            <label>Body</label>
+            <textarea name="body" required></textarea>
+
+            <button type="submit">Classify</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            Priority:
+            <span class="{{ prediction|lower }}">{{ prediction }}</span>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>
